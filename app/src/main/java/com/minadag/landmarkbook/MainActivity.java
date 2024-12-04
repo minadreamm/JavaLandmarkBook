@@ -1,8 +1,10 @@
 package com.minadag.landmarkbook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import androidx.activity.EdgeToEdge;
@@ -56,5 +58,14 @@ public class MainActivity extends AppCompatActivity {
         );
 
         binding.listView.setAdapter(arrayAdapter);
+
+        binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this,DetailsActivity.class);
+                intent.putExtra("mina",ArrayListLandmark.get(position));
+                startActivity(intent);
+            }
+        });
     }
 }
